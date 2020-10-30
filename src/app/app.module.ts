@@ -20,6 +20,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { Angular2TokenService } from 'angular2-token';
+
 import { DocumentCreateService } from './product/document-create/document-create.service';
 
 @NgModule({
@@ -34,6 +37,7 @@ import { DocumentCreateService } from './product/document-create/document-create
     PreviewDocumentComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -42,7 +46,7 @@ import { DocumentCreateService } from './product/document-create/document-create
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DocumentCreateService],
+  providers: [DocumentCreateService, Angular2TokenService],
   bootstrap: [
     AppComponent,
     HomeComponent,
