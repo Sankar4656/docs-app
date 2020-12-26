@@ -1,0 +1,23 @@
+<ng-container *ngIf="type==='text'">
+
+  <mat-form-field class="w-100">
+    <input matInput [placeholder]="name" #nameInput ngDefaultControl/>
+  </mat-form-field>
+
+</ng-container>
+
+<ng-container *ngIf="type==='date'">
+
+  <mat-form-field class="w-100">
+    <input matInput [matDatepicker]="nameInput" [placeholder]="name" ngDefaultControl/>
+    <mat-datepicker-toggle matSuffix [for]="nameInput"></mat-datepicker-toggle>
+    <mat-datepicker #nameInput></mat-datepicker>
+  </mat-form-field>
+
+</ng-container>
+
+<ng-container *ngIf="type==='textarea'">
+  <mat-form-field class="w-100">
+    <textarea matInput [placeholder]="name" #nameInput ngDefaultControl></textarea>
+  </mat-form-field>
+</ng-container>

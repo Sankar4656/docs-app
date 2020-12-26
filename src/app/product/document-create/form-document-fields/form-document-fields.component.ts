@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -16,20 +16,12 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
   dataSubscriptionTwo: Subscription;
   exportTo: any;
   innerHtml: any;
+  @Input() fields = [];
 
   constructor(private documentCreateService: DocumentCreateService) { }
 
-  DocForm = new FormGroup({
-    date: new FormControl('', [Validators.required]),
-    landLordName: new FormControl('', [Validators.required]),
-    fatherName: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
-    lesseName: new FormControl('', [Validators.required]),
-    propAddress: new FormControl('', [Validators.required]),
-    rentInWords: new FormControl('', [Validators.required]),
-    dateOfLC: new FormControl('', [Validators.required]),
-    placeOfAG: new FormControl('', [Validators.required]),
-  });
+  DocForm = new FormGroup({});
+
 
   ngOnInit() {
     this.dataSubscription = this.DocForm.valueChanges.subscribe(val => {
@@ -42,6 +34,11 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
     });
     this.dataSubscriptionTwo = this.documentCreateService.getHtml()
       .subscribe(mymessage => this.innerHtml = mymessage);
+
+    //building formcontrols
+    this.fields.forEach(x=>{
+      this.DocForm.addControl(x[0],new FormControl('',Validators.required))
+    })
   }
 
 

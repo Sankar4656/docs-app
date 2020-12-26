@@ -2,67 +2,14 @@
   <h3 class="">Fill in the details here</h3>
   <mat-divider></mat-divider>
   <form [formGroup]="DocForm" (ngSubmit)="onSubmit()" class="pt-24">
-
-    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
-      
-      <mat-form-field class="w-100">
-        <input matInput [matDatepicker]="picker1" placeholder="Choose date" formControlName="date">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Landlord Name" formControlName="landLordName">
-      </mat-form-field>
-
+    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%" *ngFor="let field of fields; let i = index">
+      <ng-container *ngIf="i % 2 == 0 || i == 0">
+        <app-dynamic-field class="w-100" [type]="field[1]" [name]="field[0]" [formControlName]="field[0]"></app-dynamic-field>
+        <ng-container *ngIf="fields[i+1] != null">
+          <app-dynamic-field class="w-100" [type]="fields[i+1][1]" [name]="fields[i+1][0]" [formControlName]="fields[i+1][0]"></app-dynamic-field>
+        </ng-container>
+      </ng-container>
     </div>
-
-    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
-      
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Father Name" formControlName="fatherName">
-      </mat-form-field>
-      
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Address" formControlName="address">
-      </mat-form-field>
-
-    </div>
-
-    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
-      
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Lesse Name" formControlName="lesseName">
-      </mat-form-field>
-
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Prop Address" formControlName="propAddress">
-      </mat-form-field>
-
-    </div>
-
-    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
-    
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Rent in Words" formControlName="rentInWords">
-      </mat-form-field>
-
-      <mat-form-field class="w-100">
-        <input matInput [matDatepicker]="picker2" placeholder="Choose Date of LC" formControlName="dateOfLC">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-    
-    </div>
-
-    <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
-    
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Place of AG" formControlName="placeOfAG">
-      </mat-form-field>
-    
-    </div>
-
     <div class="pos-bot">
       <button type="submit" (click)="pdf()" mat-raised-button color="warn">Export as PDF</button>
       <button type="submit" (click)="doc()" mat-raised-button color="primary">Export as DOC</button>

@@ -21,9 +21,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http'
 import { Angular2TokenService } from 'angular2-token';
 
 import { DocumentCreateService } from './product/document-create/document-create.service';
+import { documents } from './documents'
+import { DynamicFieldComponent } from './product/document-create/dynamic-field/dynamic-field.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +37,12 @@ import { DocumentCreateService } from './product/document-create/document-create
     ProductComponent,
     DocumentCreateComponent,
     FormDocumentFieldsComponent,
-    PreviewDocumentComponent
+    PreviewDocumentComponent,
+    DynamicFieldComponent
   ],
   imports: [
     HttpClientModule,
+    HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -46,7 +51,11 @@ import { DocumentCreateService } from './product/document-create/document-create
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DocumentCreateService, Angular2TokenService],
+  providers: [
+    DocumentCreateService, 
+    Angular2TokenService,
+    { provide: 'DOCUMENTS', useValue: documents }
+  ],
   bootstrap: [
     AppComponent,
     HomeComponent,
@@ -55,7 +64,8 @@ import { DocumentCreateService } from './product/document-create/document-create
     ProductComponent,
     DocumentCreateComponent,
     FormDocumentFieldsComponent,
-    PreviewDocumentComponent
+    PreviewDocumentComponent,
+    DynamicFieldComponent
   ]
 })
 export class AppModule { }

@@ -10,32 +10,14 @@
   <h2 class="title-2 text-primary">Products</h2>
   <div class="contain-box">
     <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-      <mat-card class="example-card">
+      <mat-card class="example-card" *ngFor="let document of Documents">
         <img mat-card-image src="assets/document.png" alt="Document">
         <mat-card-content>
-          <h4 class="mat-title text-primary">Rental Agreement</h4>
-          <p class="mat-caption">
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
+          <h4 class="mat-title text-primary">{{ document.name }}</h4>
+          <p class="mat-caption">{{ document.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button [routerLink]="['/product']" mat-raised-button color="accent" class="w-100">Fill Details and Download</button>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="example-card">
-        <img mat-card-image src="assets/document.png" alt="Document">
-        <mat-card-content>
-          <h4 class="mat-title text-primary">Partnership Deed</h4>
-          <p class="mat-caption">
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="accent" class="w-100">Fill Details and Download</button>
+          <button [routerLink]="['product', document.id]" mat-raised-button color="accent" class="w-100">Fill Details and Download</button>
         </mat-card-actions>
       </mat-card>
     </div>

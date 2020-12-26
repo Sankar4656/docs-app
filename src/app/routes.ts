@@ -4,5 +4,5 @@ import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'product', component: ProductComponent }
+  { path: 'product/:id', component: ProductComponent }
 ];
