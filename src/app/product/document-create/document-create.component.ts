@@ -12,6 +12,7 @@ import { documents } from '../../documents';
 export class DocumentCreateComponent implements OnInit {
 
   paragraph: string;
+  newParagraph: string;
 
   regex_string: RegExp;
   m: any;
@@ -25,14 +26,17 @@ export class DocumentCreateComponent implements OnInit {
       
       this.regex_string = /<<[a-zA-Z0-9 _,]*>>/g;
       this.paragraph = documents[id - 1].doc;
+      let count = 0;
       do {
         this.m = this.regex_string.exec(this.paragraph);
         // pushing the input/text/textarea fields into fields array
         if(this.m){
           this.fields.push(this.m[0].replace(/<< /g, '').replace(/ >>/g, '').split(" ", 2));
+          count++;
         }
       } while (this.m);
-      console.log(this.fields);
+      
+      this.newParagraph = this.paragraph.replace(this.regex_string, '<b class="preview-elements"></b>');
     });
     
   }

@@ -18,12 +18,18 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
   innerHtml: any;
   @Input() fields = [];
 
+
   constructor(private documentCreateService: DocumentCreateService) { }
 
   DocForm = new FormGroup({});
 
 
   ngOnInit() {
+    //building formcontrols
+    this.fields.forEach(x=>{
+      this.DocForm.addControl(x[0],new FormControl('',[Validators.required]))
+    })
+
     this.dataSubscription = this.DocForm.valueChanges.subscribe(val => {
       if (!(document.body.classList.contains('form-filled'))) {
         if (this.DocForm.valid) {
@@ -35,29 +41,18 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
     this.dataSubscriptionTwo = this.documentCreateService.getHtml()
       .subscribe(mymessage => this.innerHtml = mymessage);
 
-    //building formcontrols
-    this.fields.forEach(x=>{
-      this.DocForm.addControl(x[0],new FormControl('',Validators.required))
-    })
   }
 
 
-  onSubmit() {
-    if (this.DocForm.valid) {
-      if (this.exportTo === 'doc') {
-        this.exportToDoc(this.innerHtml);
-      } else {
+  onSubmit(buttonType) {        
+    if(this.DocForm.valid) {
+      if(buttonType==="pdf") {
         this.makePdf(this.innerHtml);
       }
-    }
-  }
-
-  public doc(): void {
-    this.exportTo = 'doc';
-  }
-
-  public pdf(): void {
-    this.exportTo = 'pdf';
+      if(buttonType==="doc"){
+        this.exportToDoc(this.innerHtml);
+      }
+    }  
   }
 
   public makePdf(data: any) {

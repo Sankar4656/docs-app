@@ -1,7 +1,7 @@
 <mat-card class="my-30 mx-15">
   <h3 class="">Fill in the details here</h3>
   <mat-divider></mat-divider>
-  <form [formGroup]="DocForm" (ngSubmit)="onSubmit()" class="pt-24">
+  <form [formGroup]="DocForm" (ngSubmit)="DocForm.valid && onSubmit(buttonType)" class="pt-24">
     <div class="flex-container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%" *ngFor="let field of fields; let i = index">
       <ng-container *ngIf="i % 2 == 0 || i == 0">
         <app-dynamic-field class="w-100" [type]="field[1]" [name]="field[0]" [formControlName]="field[0]"></app-dynamic-field>
@@ -11,8 +11,8 @@
       </ng-container>
     </div>
     <div class="pos-bot">
-      <button type="submit" (click)="pdf()" mat-raised-button color="warn">Export as PDF</button>
-      <button type="submit" (click)="doc()" mat-raised-button color="primary">Export as DOC</button>
+      <button type="submit" value="submit" (click)="onSubmit('pdf')" mat-raised-button color="warn">Export as PDF</button>
+      <button type="submit" value="submit" (click)="onSubmit('doc')" mat-raised-button color="primary">Export as DOC</button>
     </div>
   </form>
 </mat-card>

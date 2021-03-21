@@ -2,77 +2,7 @@
   <div class="pdf-inner-box" #pdfContent oncopy="return false">
     <div class="p-8-16">
       <h4 class="text-center">Rent Agreement</h4>
-      <small>
-        <p>This rent agreement is made on this <b class="preview-elements">{{ formFieldValues.date | date:'dd-MM-yyyy' }}</b> by <b class="preview-elements">{{ formFieldValues.landLordName }}</b> S/o <b class="preview-elements">{{ formFieldValues.fatherName }}</b>, Address: <b class="preview-elements">{{ formFieldValues.address }}</b>. Here in after called
-        the Lessor/Owner, Party of the first part</p>
-        <p>AND</p>
-        <p><b class="preview-elements">{{ formFieldValues.lesseName }}</b> called lessee/tenant, party of the second part
-        That the expression of the term, Lessor/Owner and the Lessee/Tenant shall mean and include their legal heirs successors,
-        assigns, representatives etc. Whereas the Lessor/Owner is the owner and in possession of the property No: <b class="preview-elements">{{ formFieldValues.propAddress }}</b>
-        and has agreed to let out the one office room, one toilet & bathroom set on said property, to the Lessee/Tenant and the
-        Lessee/Tenant has agreed to take the same on rent of Rs. <b class="preview-elements">{{ formFieldValues.rentInWords }}</b>/- (in words) per month.</p>
-        
-        
-        <p>Now This Rent Agreement Witness As Under:</p>
-        
-        
-        <p>That the Tenant/Lessee will have to pay Rs. <b class="preview-elements">{{ formFieldValues.rentInWords }}</b>/- (in words) as monthly rent, which does not include electricity and
-        water charges.</p>
-        
-        
-        <p>That the Tenant/Lessee shall not lease the property to a subtenant under any circumstances without the consent of the
-        owner/landlord.</p>
-        
-        
-        <p>That the Tenant/Lessee shall follow all the rules and regulations, by-laws set by the local authorities in respect of
-        the leased property and will not get involved or do illegal activities in the leased property.</p>
-        
-        
-        <p>That this lease/agreement is granted for a period of eleven (11) months starting from <b class="preview-elements">{{ formFieldValues.dateOfLC | date:'dd-MM-yyyy'}}</b> and this contract can
-        be extended further with the mutual consent of both the parties as per the current rental value in the market.
-        That the Lessee shall pay the water and electricity charges on the basis of the consumption to the landlord/owner.</p>
-        
-        
-        <p>That the Tenant/Lessee shall not be permitted to do a construction in the rented premises. Besides, he/she could do the
-        installation of temporary decoration, wooden partition/cabin, air conditioners etc. without seeking the permission of
-        the landlord.</p>
-        <p>That the Tenant/Lessee is not allowed to make any alteration in the rented property without the written consent of the
-        owner.</p>
-        
-        
-        <p>That the Tenant/Lessee will have to allow the landlord or his authorized agent to enter in to rented premises for its
-        inspection or general checking for any repair work, if needed.</p>
-        
-        
-        <p>That the Tenant/Lessee shall keep the premises clean and shall not involve in any activity that causes problems to
-        neighbours.<p>
-        <p>That the Tenant/Lessees shall himself/herself bear the cost of day to day minor repairs.</p>
-        
-        
-        <p>That this contract/agreement could be revoked before the expiry of this tenancy period by serving one month prior
-        notice.</p>
-        
-        
-        <p>That the Lessee/Tenant shall not involve in illegal activities and will not keep any offensive, dangerous or explosive
-        articles in the premises.</p>
-        
-        
-        <p>That the Tenant/Lessee shall pay one month rent in advance to the landlord that would be further adjusted in the monthly
-        rent.</p>
-        
-        
-        <p>That both the parties, landlord and the tenant, have read and understood this agreement and have agreed to sign the same
-        without any pressure from any side.</p>
-        
-        
-        <p>In WITNESS WHEREOF the lessor/owner and the tenant/lessee have hereunto subscribed their hand at <b class="preview-elements">{{ formFieldValues.placeOfAG }}</b> on this
-        the <b class="preview-elements">{{ formFieldValues.date | date:'dd-MM-yyyy' }}</b> year first above mentioned in presence of the following witnesses.</p>
-        
-        
-        <p>Witnesses:</p>
-        <p>1.«W1»</p>
-        <p>2.«W2»</p>
+      <small [innerHTML]="this.newParagraph">
       </small>
-    </div>
   </div>
 </div>
