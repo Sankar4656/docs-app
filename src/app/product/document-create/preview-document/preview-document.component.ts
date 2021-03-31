@@ -28,7 +28,7 @@ export class PreviewDocumentComponent implements OnInit, OnDestroy {
       .subscribe(mymessage => {
         this.formFieldValues = mymessage;
         if (document.body.classList.contains('form-filled')) {
-          this.previewHtml = this.pdfContent.nativeElement.innerHTML;
+          this.previewHtml = this.pdfContent.nativeElement;
           this.documentCreateService.updateHtml(this.previewHtml);
         }
         this.fieldvalues = Object.values(this.formFieldValues);
