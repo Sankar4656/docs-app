@@ -62,11 +62,32 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
   public makePdf() {
     const data = this.innerHtml;
     
-    html2canvas(data).then(canvas => {
-      const contentDataURL = canvas.toDataURL('image/png')  
-      let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
-      pdf.save('Filename.pdf');   
+    html2canvas(data, {
+      quality: 4,
+      scale: 5
+    }).then(canvas => {
+      debugger;
+      var imgWidth = 210;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+        //enter code here
+        const imgData = canvas.toDataURL('image/png')
+
+        var doc = new jspdf('p', 'mm');
+        var position = 0;
+
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight+15);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight + 15);
+          heightLeft -= pageHeight;
+        }
+      doc.save ('doc.pdf')
     });
   }
 
