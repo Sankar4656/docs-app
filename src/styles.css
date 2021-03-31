@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+[ng-reflect-router-link] {
+  cursor: pointer;
+}
+
+.contain-box{
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.screen-ht-h-f{
+  height: calc(100vh - 128px);
+  overflow-y: auto;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.w-50{
+  width: 50%;
+}
+
+.text-primary{
+  color: #3f51b5;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.m-5{
+  margin: 5px;
+}
+
+.ml-5{
+  margin-left: 5px;
+}
+
+.mr-5{
+  margin-right: 5px;
+}
+
+.mx-15{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.mt-5{
+  margin-top: 5px;
+}
+
+.mb-5{
+  margin-bottom: 5px;
+}
+
+.p-5{
+  padding: 5px;
+}
+
+.pl-5{
+  padding-left: 5px;
+}
+
+.pr-5{
+  padding-right: 5px;
+}
+
+.pt-5{
+  padding-top: 5px;
+}
+
+.pb-5{
+  padding-bottom: 5px;
+}
+
+.pt-24{
+  padding-top: 24px;
+}
+
+.py-60{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.px-60{
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.my-30{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

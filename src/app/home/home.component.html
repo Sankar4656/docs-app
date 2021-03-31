@@ -1,0 +1,25 @@
+<div class="bgimg">
+  <div class="flex-box">
+    <h1 class="title">Brand Document Builder<br>
+      Make a Document Download Online—Quick & Easy</h1>
+    <button class="lg" mat-raised-button color="accent" (click)="scroll(products)">Explore</button>
+  </div>
+</div>
+
+<section class="py-60" #products style="background-color: #e9ebf2;">
+  <h2 class="title-2 text-primary">Products</h2>
+  <div class="contain-box">
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+      <mat-card class="example-card" *ngFor="let document of Documents">
+        <img mat-card-image src="assets/document.png" alt="Document">
+        <mat-card-content>
+          <h4 class="mat-title text-primary">{{ document.name }}</h4>
+          <p class="mat-caption">{{ document.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button [routerLink]="['product', document.id]" mat-raised-button color="accent" class="w-100">Fill Details and Download</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section>
