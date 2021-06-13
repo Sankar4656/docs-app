@@ -13,10 +13,12 @@ export class DocumentCreateComponent implements OnInit {
 
   paragraph: string;
   newParagraph: string;
+  docName: string;
 
   regex_string: RegExp;
-  m: any;
+  regex_arr: any;
   fields = [];
+  replace_string: RegExp;
 
   constructor(@Inject('DOCUMENTS') public Documents: any[], private activatedRoute: ActivatedRoute) { }
 
@@ -26,17 +28,25 @@ export class DocumentCreateComponent implements OnInit {
       
       this.regex_string = /<<[a-zA-Z0-9 _,]*>>/g;
       this.paragraph = documents[id - 1].doc;
+      this.docName = documents[id - 1].name;
       let count = 0;
       do {
-        this.m = this.regex_string.exec(this.paragraph);
+        this.regex_arr = this.regex_string.exec(this.paragraph);
+              
         // pushing the input/text/textarea fields into fields array
-        if(this.m){
-          this.fields.push(this.m[0].replace(/<< /g, '').replace(/ >>/g, '').split(" ", 2));
+        if(this.regex_arr){
+          let field_name = this.regex_arr[0].replace(/<< /g, '').replace(/ >>/g, '').split(" ", 2)
+          if (this.fields.indexOf(field_name) === -1) {
+            this.fields.push(field_name);
+            this.replace_string = new RegExp("<< " + field_name[0] + " " + field_name[1] + " >>", "g");
+            this.newParagraph = this.paragraph.replace(this.replace_string, '<b class="preview-elements '+ field_name[0] +'"></b>');
+            this.paragraph = this.newParagraph;
+          }
+          
           count++;
         }
-      } while (this.m);
+      } while (this.regex_arr);
       
-      this.newParagraph = this.paragraph.replace(this.regex_string, '<b class="preview-elements"></b>');
     });
     
   }

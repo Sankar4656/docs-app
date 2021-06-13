@@ -5,10 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { DocumentCreateService } from '../document-create.service';
 
-import jspdf from 'jspdf';
-import * as _html2canvas from 'html2canvas';
-const html2canvas: any = _html2canvas;
-
 @Component({
   selector: 'app-form-document-fields',
   templateUrl: './form-document-fields.component.html',
@@ -62,33 +58,17 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
   public makePdf() {
     const data = this.innerHtml;
     
-    html2canvas(data, {
-      quality: 4,
-      scale: 5
-    }).then(canvas => {
-      debugger;
-      var imgWidth = 210;
-      var pageHeight = 295;
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
-
-        //enter code here
-        const imgData = canvas.toDataURL('image/png')
-
-        var doc = new jspdf('p', 'mm');
-        var position = 0;
-
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight+15);
-        heightLeft -= pageHeight;
-
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
-          doc.addPage();
-          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight + 15);
-          heightLeft -= pageHeight;
-        }
-      doc.save ('doc.pdf')
-    });
+  //   var doc = new jsPDF();
+  //   var specialElementHandlers = { 
+  //     '#editor': function (element, renderer) { 
+  //         return true; 
+  //     } 
+  //   };
+  //   doc.addHTML(data, 20, 20, { 
+  //     'width': 180, 
+  //     'elementHandlers': specialElementHandlers 
+  //   }); 
+  // doc.save('sample-page.pdf'); 
   }
 
   public exportToDoc() {

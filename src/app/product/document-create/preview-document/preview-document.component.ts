@@ -13,9 +13,9 @@ export class PreviewDocumentComponent implements OnInit, OnDestroy {
 
   @ViewChild('pdfContent') pdfContent: ElementRef;
   @Input() newParagraph = '';
+  @Input() docName = '';
 
   dataSubscription: Subscription;
-  dataSubscriptionTwo: Subscription;
   formFieldValues: {};
   previewHtml: any;
   previewElement: any;
@@ -33,7 +33,8 @@ export class PreviewDocumentComponent implements OnInit, OnDestroy {
         }
         this.fieldvalues = Object.values(this.formFieldValues);
         
-        this.textSlides(this.fieldvalues);
+        
+        this.textSlides(this.formFieldValues);
       })
   }
 
@@ -53,17 +54,21 @@ export class PreviewDocumentComponent implements OnInit, OnDestroy {
     }
   };
 
-  textSlides = (fieldvalues) => {
-    const slides = document.getElementsByClassName('preview-elements');
-    for (let i = 0; i < slides.length; i++) {
-      const slide = slides[i] as HTMLElement;
-      slide.innerHTML = fieldvalues[i];
-    }
+  textSlides = (formFieldValues: any) => {
 
+    console.log(formFieldValues);
+    
+    Object.keys(formFieldValues).forEach(key => {
+      let value = formFieldValues[key];
+      const slides = document.getElementsByClassName(key);
+      for (let i = 0; i < slides.length; i++) {
+        const slide = slides[i] as HTMLElement;
+        slide.innerHTML = value;
+      }
+    })
   }
 
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
-    this.dataSubscriptionTwo.unsubscribe();
   }
 }
