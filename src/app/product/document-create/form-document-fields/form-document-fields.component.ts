@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import jsPDF from 'jspdf';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -57,18 +58,17 @@ export class FormDocumentFieldsComponent implements OnInit, OnDestroy {
 
   public makePdf() {
     const data = this.innerHtml;
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    pdf.canvas.height = 72 * 11;
+    pdf.canvas.width = 72 * 8.5;
+
+    pdf.html(data, {
+      callback: (doc) => {
+        doc.save('test.pdf');
+      }
+   });
+
     
-  //   var doc = new jsPDF();
-  //   var specialElementHandlers = { 
-  //     '#editor': function (element, renderer) { 
-  //         return true; 
-  //     } 
-  //   };
-  //   doc.addHTML(data, 20, 20, { 
-  //     'width': 180, 
-  //     'elementHandlers': specialElementHandlers 
-  //   }); 
-  // doc.save('sample-page.pdf'); 
   }
 
   public exportToDoc() {
